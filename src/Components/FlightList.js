@@ -36,10 +36,7 @@ export default function FlightList() {
 
         if (numberOfStops) {
             // Ensure both stops and input are properly parsed to integers
-            filteredFlights = filteredFlights.filter(flight => {
-                console.log('Stops in backend:', flight.stops);  // Debugging: check backend data
-                console.log('Entered stops:', numberOfStops);    // Debugging: check input value
-                return flight.stops === parseInt(numberOfStops, 10);
+            filteredFlights = filteredFlights.filter(flight => { return flight.numberOfStops === parseInt(numberOfStops, 30);
             });
         }
 
