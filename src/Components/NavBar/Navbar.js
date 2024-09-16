@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
+//import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
 import './Navbar.css';
 
 export default function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light custom-navbar fixed-top">
             <a className="navbar-brand" href="/">
                 <i className="fas fa-plane-departure"></i> {/* Flight logo from Font Awesome */}
                 Flights
