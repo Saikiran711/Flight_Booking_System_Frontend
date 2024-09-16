@@ -1,0 +1,39 @@
+/* Login.css */
+.login-container {
+    position: relative;
+    background: url('spencer-imbrock-QL0zAklHUz8-unsplash.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.login-content {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.airplane-image {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px; /* Adjust size as needed */
+    z-index: 0;
+}
+
+.girl-image {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    width: 150px; /* Adjust size as needed */
+    z-index: 0;
+}
+
