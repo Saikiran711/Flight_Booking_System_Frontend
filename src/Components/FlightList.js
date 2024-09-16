@@ -73,7 +73,7 @@ const viewFlightDetails = async (flightId) => {
 
     return (
         <div className="container mt-5">
-            <h2>Flight Results</h2>
+            <h2>Advance Filters</h2>
             {errorMessage && <div className="alert alert-danger">{errorMessage}</div>}
 
             {/* Optional Filters */}
@@ -126,7 +126,7 @@ const viewFlightDetails = async (flightId) => {
 
             {/* Display the filtered flight results */}
             <div className="mt-4">
-                {flights.length > 0 ? (
+                {flights.length > 0 ? ( 
                     <ul className="list-group">
                         {flights.map((flight, index) => (
                             <li key={index} className="list-group-item">
