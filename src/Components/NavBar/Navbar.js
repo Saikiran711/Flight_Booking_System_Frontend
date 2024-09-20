@@ -1,12 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 //import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome CSS
 import './Navbar.css';
 
+
 export default function Navbar() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('userEmail'); // Clear email from localStorage
+        navigate('/'); // Redirect to home page after logout
+    };
+ 
+    const isLoggedIn = !!localStorage.getItem("authToken");
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light custom-navbar fixed-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light custom-navbar fixed-top" style={{ color: 'blue' }}>
             <a className="navbar-brand" href="/">
                 <i className="fas fa-plane-departure"></i> {/* Flight logo from Font Awesome */}
                 Flights
@@ -28,12 +38,22 @@ export default function Navbar() {
                 </ul>
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/login">
-                            <i className="fas fa-user-circle"></i> {/* Profile icon from Font Awesome */}
-                            <span className="profile-name">Login</span>
-                        </Link>
+                        {isLoggedIn ? (
+                            <div className="nav-link" onClick={handleLogout} style={{ cursor: 'pointer' }}>
+                                <i className="fas fa-user-circle"></i> Logout
+                            </div>
+                        ) : (
+                            <Link className="nav-link" to="/login">Login</Link>
+                        )}
                     </li>
+                    {isLoggedIn && (
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/Profile">Profile</Link>
+                        </li>
+                    )}
                 </ul>
+                 
+                
             </div>
         </nav>
     );

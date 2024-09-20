@@ -26,3 +26,6 @@ body {
     position: relative;
     z-index: 1; /* Ensure content is above the background */
 }
+.custom-navbar{
+    background-color: aquamarine;
+}

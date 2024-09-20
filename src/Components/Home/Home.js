@@ -1,22 +1,21 @@
-import React from 'react';
-
+// HomePage.js
+import React from 'react';  // Ensure useState is imported
 import SearchForm from './SearchForm';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function HomePage() {
     const navigate = useNavigate();
-    const handleSearch = (flights) => {
-        navigate('/FlightList', { state: { flights } });
+   
+
+    const handleSearch = (flights, passengers) => {
+        navigate('/FlightList', { state: { flights, passengers } }); // Pass passengers along with flights
     };
-    //for clarity give below give the book navigate as in rote in app,js it navigate to about page
 
     return (
         <div>
-          
             <div className="container mt-5">
                 <h2>Search The Flights</h2>
-                <SearchForm onSearch={handleSearch} />
+                <SearchForm onSearch={handleSearch} />  {/* Pass passengers to SearchForm */}
             </div>
         </div>
     );

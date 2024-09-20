@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useLocation,useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import FlightDetails from './FlightDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axiosInstance from '../Authnticate/axiosInstance';
+import FlightDetails from './FlightDetails';
 
 export default function FlightList() {
     const location = useLocation();
     const basicSearchResults = location.state?.flights || []; // Get basic search results from the homepage
+    const passengers = location.state?.passengers || [];  
+ 
 
     const [flights, setFlights] = useState(basicSearchResults); // Initialize with basic search results
     const [minPrice, setMinPrice] = useState('');
@@ -57,18 +59,22 @@ const viewFlightDetails = async (flightId) => {
     }
 
     try {
-        const response = await axios.get(`https://localhost:44339/api/Flight/${flightId}`);
+        const response = await axiosInstance.get(`/Flight/${flightId}`);
         setSelectedFlight(response.data);
     } catch (error) {
         if (error.response && error.response.status === 400) {
-            setErrorMessage('No flights found based on the Filters Applied.');
+            setErrorMessage('No flight Details Found.');
         } else {
-            setErrorMessage('Error Applying Filters.');
+            setErrorMessage('Error in fetching Flight Details.');
         }
         console.error(error);
     }
 };
 
+const handleBooking = (flight) => {
+    navigate('/booking', { state: { flight, passengers } }); // Pass the seats as well
+
+};
 
 
     return (
@@ -137,7 +143,7 @@ const viewFlightDetails = async (flightId) => {
                                 <strong>Price:</strong> ${flight.price} <br />
                                 <strong>Stops:</strong> {flight.stops}<br/>
                                 <button className="btn btn-info" onClick={() => viewFlightDetails(flight.flightNumber)}>Flight Details</button>
-                            <button className="btn btn-primary ml-2 " onClick={() => navigate('/BookingPage', { state: { flight } })}>Book</button>
+                                <button className="btn btn-primary ml-2" onClick={() => handleBooking(flight)}>Book</button>
                             </li>
                         ))}
                     </ul>
@@ -147,7 +153,7 @@ const viewFlightDetails = async (flightId) => {
                 )}
             </div>
             {selectedFlight && (
-                <FlightDetails flight={selectedFlight} handleBooking={(flightId) => navigate('/BookingPage', { state: { flightId } })} />
+                <FlightDetails flight={selectedFlight.flightNumber} handleBooking={(flight) => navigate('/BookingPage', { state: { flight,passengers} })} />
             )}
 
         </div>

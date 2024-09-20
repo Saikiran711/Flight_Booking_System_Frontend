@@ -1,6 +1,17 @@
 import React from 'react';
 
+import { useNavigate } from 'react-router-dom';
 const FlightDetails = ({ flight, handleBooking }) => {
+
+   
+    const navigate = useNavigate();
+
+    const handleViewFlights = () => {
+        if (flight) {
+            navigate('/flight-list', { state: { flight } });
+        }
+    };
+
     // Function to format stops
     const formatStops = (stops) => {
         return stops.map((stop, index) => (
@@ -14,6 +25,7 @@ const FlightDetails = ({ flight, handleBooking }) => {
     const formatSeats = (seats) => {
         return seats.map((seat, index) => (
             <div key={index} className="mt-2">
+                <p><strong>Seat Number:</strong>{seat.seatNumber}</p>
                 <p><strong>Class:</strong> {seat.seatClass}</p>
                 <p><strong>Position:</strong> {seat.seatPosition}</p>
                 <p><strong>Price:</strong> ${seat.price.toFixed(2)}</p>
@@ -33,13 +45,9 @@ const FlightDetails = ({ flight, handleBooking }) => {
             <p><strong>Baggage Allowance:</strong> {flight.baggageAllowance} kg</p>
             <p><strong>Seats:</strong></p>
             {formatSeats(flight.seats)}
-            <button
-                className="btn btn-primary"
-                onClick={() => handleBooking(flight.flightNumber)}
-            >
-                Book
-            </button>
+            <button onClick={handleViewFlights} className="btn btn-primary">View Flights</button>
         </div>
+     
     );
 };
 

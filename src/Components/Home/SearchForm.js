@@ -57,7 +57,7 @@ export default function SearchForm({ onSearch }) {
                 setErrorMessage('No flights found.');
             } else {
                 setErrorMessage(''); // Clear any previous error message
-                onSearch(data); // Pass data to parent component
+                onSearch(data,passengers); // Pass data to parent component
             }
         } catch (error) {
             if (error.response && error.response.status === 400) {

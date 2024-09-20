@@ -1,13 +1,5 @@
-/* Container for the form */
-.search-form-container {
-    margin: 0 auto;
-    max-width: 800px;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.7); /* Darker background with opacity */
-    border-radius: 8px; /* Rounded corners for the container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for the container */
-    color: #fff; /* White text color */
-}
+
+
 
 /* Input fields and select dropdowns */
 .form-control {
